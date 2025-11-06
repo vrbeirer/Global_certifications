@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Global Certifications</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #ffffff;
+            color: #1a1a2e;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Animated background grid */
+        .bg-grid {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(0, 153, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 153, 255, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: 0;
+            animation: gridMove 20s linear infinite;
+        }
+
+        @keyframes gridMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 80px 20px;
+        }
+
+        /* Header Section with engaging animations */
+        .header {
+            text-align: center;
+            margin-bottom: 100px;
+            position: relative;
+        }
+
+        .header h1 {
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            font-weight: 800;
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .header h1 .word {
+            display: inline-block;
+            opacity: 0;
+            transform: translateY(50px) rotateX(-90deg);
+            animation: wordReveal 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+        }
+
+        .header h1 .word:nth-child(1) { animation-delay: 0.1s; }
+        .header h1 .word:nth-child(2) { animation-delay: 0.3s; }
+        .header h1 .word:nth-child(3) { animation-delay: 0.5s; }
+
+        @keyframes wordReveal {
+            to {
+                opacity: 1;
+                transform: translateY(0) rotateX(0);
+            }
+        }
+
+        .header h1 .gradient-text {
+            background: linear-gradient(135deg, #0099ff 0%, #00d4ff 50%, #0099ff 100%);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientShift 3s ease infinite;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% center; }
+            50% { background-position: 100% center; }
+        }
+
+        .header p {
+            font-size: clamp(1rem, 2vw, 1.4rem);
+            color: #5a5a6e;
+            font-weight: 300;
+            letter-spacing: 0.5px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.8s ease 0.8s forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Decorative line under header */
+        .header::after {
+            content: '';
+            display: block;
+            width: 0;
+            height: 4px;
+            background: linear-gradient(90deg, transparent, #00d4ff, transparent);
+            margin: 40px auto 0;
+            border-radius: 2px;
+            animation: lineExpand 1.5s ease 1s forwards;
+        }
+
+        @keyframes lineExpand {
+            to { width: 200px; }
+        }
+
+        /* Company Grid */
+       .companies-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 35px;
+    margin-bottom: 100px;
+}
+
+@media (max-width: 1200px) {
+    .companies-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .companies-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+        .company-card {
+            position: relative;
+            background: #ffffff;
+            border: 2px solid rgba(0, 153, 255, 0.1);
+            border-radius: 24px;
+            padding: 50px 30px;
+            text-align: center;
+            cursor: default;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+            opacity: 0;
+            transform: translateY(40px) scale(0.95);
+            animation: cardReveal 0.6s ease forwards;
+        }
+
+        .company-card:nth-child(1) { animation-delay: 0.2s; }
+        .company-card:nth-child(2) { animation-delay: 0.3s; }
+        .company-card:nth-child(3) { animation-delay: 0.4s; }
+        .company-card:nth-child(4) { animation-delay: 0.5s; }
+        .company-card:nth-child(5) { animation-delay: 0.6s; }
+        .company-card:nth-child(6) { animation-delay: 0.7s; }
+        .company-card:nth-child(7) { animation-delay: 0.8s; }
+        .company-card:nth-child(8) { animation-delay: 0.9s; }
+
+        @keyframes cardReveal {
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .company-card::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            border-radius: 24px;
+            background: linear-gradient(135deg, #00d4ff, #0099ff, #00d4ff);
+            background-size: 200% 200%;
+            opacity: 0;
+            z-index: -1;
+            transition: opacity 0.5s ease;
+            animation: gradientRotate 3s linear infinite;
+        }
+
+        @keyframes gradientRotate {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .company-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 20px 60px rgba(0, 153, 255, 0.2);
+        }
+
+        .company-card:hover::before {
+            opacity: 1;
+        }
+
+        .company-logo-container {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+            position: relative;
+        }
+
+        .company-card:hover .company-logo-container {
+            transform: scale(1.15) rotateY(360deg);
+        }
+
+        .company-logo-container img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            filter: grayscale(0%);
+            transition: filter 0.3s ease;
+        }
+
+        .company-name {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #1a1a2e;
+            margin-bottom: 12px;
+            transition: color 0.3s ease;
+        }
+
+        .company-card:hover .company-name {
+            color: #0099ff;
+        }
+
+        .company-tagline {
+            font-size: 0.95rem;
+            color: #5a5a6e;
+            font-weight: 400;
+            line-height: 1.5;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            text-align: center;
+            margin-top: 80px;
+            opacity: 0;
+            animation: fadeIn 1s ease 1s forwards;
+        }
+
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+
+        .cta-button {
+            position: relative;
+            display: inline-block;
+            padding: 22px 65px;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #ffffff;
+            text-decoration: none;
+            background: linear-gradient(135deg, #0099ff 0%, #00d4ff 100%);
+            border-radius: 50px;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 10px 40px rgba(0, 153, 255, 0.3);
+            letter-spacing: 0.5px;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
+        }
+
+        .cta-button::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 50px;
+            padding: 2px;
+            background: linear-gradient(135deg, #ffffff, #00d4ff);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 20px 60px rgba(0, 153, 255, 0.5);
+        }
+
+        .cta-button:hover::after {
+            opacity: 0.6;
+        }
+
+        .cta-button:active {
+            transform: translateY(-3px) scale(1.02);
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 60px 20px 40px;
+            margin-top: 100px;
+            border-top: 1px solid rgba(0, 153, 255, 0.1);
+            color: #5a5a6e;
+            font-size: 0.95rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer p {
+            margin-bottom: 10px;
+        }
+
+        .footer .designer {
+            font-weight: 600;
+            background: linear-gradient(135deg, #0099ff, #00d4ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Mobile Optimizations */
+        @media (max-width: 768px) {
+            .container {
+                padding: 50px 15px;
+            }
+
+            .header {
+                margin-bottom: 60px;
+            }
+
+            .companies-grid {
+                grid-template-columns: 1fr;
+                gap: 25px;
+                margin-bottom: 60px;
+            }
+
+            .company-card {
+                padding: 40px 25px;
+            }
+
+            .company-logo-container {
+                width: 100px;
+                height: 100px;
+            }
+
+            .cta-button {
+                padding: 20px 50px;
+                font-size: 1.1rem;
+            }
+
+            .footer {
+                margin-top: 60px;
+                padding: 40px 20px 30px;
+            }
+        }
+
+        /* Accessibility */
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        .dots::after {
+    content: '';
+    animation: loadingDots 1.5s infinite;
+}
+
+@keyframes loadingDots {
+    0%, 20% { content: '.'; }
+    40% { content: '..'; }
+    60%, 100% { content: '...'; }
+}
+
+
+    </style>
+</head>
+<body>
+    <div class="bg-grid"></div>
+    
+    <div class="container">
+        <header class="header">
+            <h1>
+                <span class="word"><span class="gradient-text">My</span></span>
+                <span class="word"><span class="gradient-text">Global</span></span>
+                <span class="word"><span class="gradient-text">Certifications</span></span>
+            </h1>
+            <p>Trusted by the world's leading innovators</p>
+        </header>
+
+        <div class="companies-grid">
+            <div class="company-card">
+                <div class="company-logo-container">
+                    <img src="https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png" alt="Google Logo">
+                </div>
+                <h3 class="company-name">Google</h3>
+                <p class="company-tagline">Search & Cloud Excellence</p>
+            </div>
+
+            <div class="company-card">
+                <div class="company-logo-container">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/7/7b/Meta_Platforms_Inc._logo.svg" alt="Meta Logo">
+                </div>
+                <h3 class="company-name">Meta</h3>
+                <p class="company-tagline">Social Innovation Leader</p>
+            </div>
+
+            <div class="company-card">
+                <div class="company-logo-container">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg" alt="IBM Logo">
+                </div>
+                <h3 class="company-name">IBM</h3>
+                <p class="company-tagline">Enterprise Technology Pioneer</p>
+            </div>
+
+            <div class="company-card">
+                <div class="company-logo-container">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg" alt="Microsoft Logo">
+                </div>
+                <h3 class="company-name">Microsoft</h3>
+                <p class="company-tagline">Cloud & Productivity Master</p>
+            </div>
+
+            <div class="company-card">
+                <div class="company-logo-container">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png" alt="LinkedIn Logo">
+                </div>
+                <h3 class="company-name">LinkedIn</h3>
+                <p class="company-tagline">Professional Network Expert</p>
+            </div>
+
+            <div class="company-card">
+                <div class="company-logo-container">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/f/f9/Salesforce.com_logo.svg" alt="Salesforce Logo">
+                </div>
+                <h3 class="company-name">Salesforce</h3>
+                <p class="company-tagline">CRM & Sales Innovation</p>
+            </div>
+
+            <div class="company-card">
+                <div class="company-logo-container">
+                    <img src="ui_path_logo.jpg" alt="UiPath Logo">
+                </div>
+                <h3 class="company-name">UiPath</h3>
+                <p class="company-tagline">Automation Excellence</p>
+            </div>
+
+            <div class="company-card">
+    <div class="company-logo-container">
+        <img src="https://www.udemy.com/staticx/udemy/images/v7/logo-udemy.svg" alt="Udemy Logo">
+    </div>
+    <h3 class="company-name">Udemy</h3>
+    <p class="company-tagline">Online Learning Platform</p>
+</div>
+        </div>
+
+        
+
+
+        <div class="cta-section">
+            <a href="#" class="cta-button" id="viewCertificates">View Certificates →</a>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>© 2025 Golbal Certifications | Designed and Developed by <span class="designer">Pranav</span></p>
+    </footer>
+
+    <script>
+        // Update CTA button link
+        document.getElementById('viewCertificates').addEventListener('click', function(e) {
+    e.preventDefault();
+    
+    // Change button text and add loading animation
+    this.innerHTML = 'Collecting Certificates<span class="dots"></span>';
+    this.style.pointerEvents = 'none'; // Prevent multiple clicks
+    
+    // Redirect after 1.5 seconds
+    setTimeout(() => {
+        window.open('https://drive.google.com/drive/folders/1b9Zqy08KRf0zvPPMkZFtglDBnihgUUMD?usp=sharing', '_blank');
+        
+        // Reset button after redirect
+        setTimeout(() => {
+            this.innerHTML = 'View Certificates →';
+            this.style.pointerEvents = 'auto';
+        }, 500);
+    }, 4000);
+});
+
+        // Add touch feedback for mobile
+        const cards = document.querySelectorAll('.company-card');
+        cards.forEach(card => {
+            card.addEventListener('touchstart', function() {
+                this.style.transform = 'translateY(-12px)';
+                this.style.boxShadow = '0 20px 60px rgba(0, 153, 255, 0.2)';
+            });
+            card.addEventListener('touchend', function() {
+                setTimeout(() => {
+                    this.style.transform = '';
+                    this.style.boxShadow = '';
+                }, 200);
+            });
+        });
+
+        // Smooth scroll behavior
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
